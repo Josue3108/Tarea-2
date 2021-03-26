@@ -3,8 +3,7 @@
 
 typedef int Cable;
 
-class EuropeanSocketInterface
-{
+class EuropeanSocketInterface{
 public:
     virtual int voltage() = 0;
 
@@ -13,8 +12,7 @@ public:
     virtual Cable earth() = 0;
 };
 
-class Socket : public EuropeanSocketInterface
-{
+class Socket : public EuropeanSocketInterface{
 public:
     int voltage() { return 230; }
 
@@ -23,8 +21,7 @@ public:
     Cable earth() { return 0; }
 };
 
-class USASocketInterface
-{
+class USASocketInterface{
 public:
     virtual int voltage() = 0;
 
@@ -32,13 +29,11 @@ public:
     virtual Cable neutral() = 0;
 };
 
-class Adapter : public USASocketInterface
-{
+class Adapter : public USASocketInterface{
     EuropeanSocketInterface* socket;
 
 public:
-    void plugIn(EuropeanSocketInterface* outlet)
-    {
+    void plugIn(EuropeanSocketInterface* outlet){
         socket = outlet;
     }
 
@@ -57,16 +52,13 @@ public:
         power = supply;
     }
 
-    void boil()
-    {
-        if (power->voltage() > 110)
-        {
+    void boil(){
+        if (power->voltage() > 110){
             std::cout << "Kettle is on fire!" << std::endl;
             return;
         }
 
-        if (power->live() == 1 && power->neutral() == -1)
-        {
+        if (power->live() == 1 && power->neutral() == -1){
             std::cout << "Coffee time!" << std::endl;
         }
     }
